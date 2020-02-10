@@ -32,10 +32,26 @@ class BarTableViewController: UITableViewController {
             bars.append(bar)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            saveMeals()
         }
     }
     
     //MARK: Private Methods
+    private func saveMeals() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bars, toFile: Bar.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadMeals() -> [Bar]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Bar.ArchiveURL.path) as? [Bar]
+
+    }
+    
+    
     private func loadSampleMeals() {
         let photo1 = UIImage(named: "mochilas")
         let photo2 = UIImage(named: "cupimBar")
@@ -60,9 +76,14 @@ class BarTableViewController: UITableViewController {
         
         //Adiciona um botao no lado esquerdo do item
         navigationItem.leftBarButtonItem = editButtonItem
-
-        loadSampleMeals()
-        
+        // Load any saved meals, otherwise load sample data.
+        if let savedMeals = loadMeals() {
+            bars += savedMeals
+        }
+        else {
+            // Load the sample data.
+            loadSampleMeals()
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -97,6 +118,7 @@ class BarTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             bars.remove(at: indexPath.row)
+            saveMeals()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
