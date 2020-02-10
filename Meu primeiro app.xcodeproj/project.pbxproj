@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0935A523E8638200480E40 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0935A423E8638200480E40 /* Bar.swift */; };
 		AB45E68B23E06EE4005E6059 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45E68A23E06EE4005E6059 /* AppDelegate.swift */; };
 		AB45E68D23E06EE4005E6059 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45E68C23E06EE4005E6059 /* ViewController.swift */; };
 		AB45E69023E06EE4005E6059 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB45E68E23E06EE4005E6059 /* Main.storyboard */; };
 		AB45E69223E06EE7005E6059 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB45E69123E06EE7005E6059 /* Assets.xcassets */; };
 		AB45E69523E06EE7005E6059 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB45E69323E06EE7005E6059 /* LaunchScreen.storyboard */; };
 		AB45E6A023E06EE8005E6059 /* Meu_primeiro_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45E69F23E06EE8005E6059 /* Meu_primeiro_appTests.swift */; };
+		AB575C7723E45BF5004E1775 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB575C7623E45BF5004E1775 /* RatingControl.swift */; };
+		AB98C4CF23EAF2260090DB0D /* BarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98C4CE23EAF2260090DB0D /* BarTableViewCell.swift */; };
+		AB98C4D123EB03700090DB0D /* BarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98C4D023EB03700090DB0D /* BarTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB0935A423E8638200480E40 /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 		AB45E68723E06EE4005E6059 /* Meu primeiro app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meu primeiro app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB45E68A23E06EE4005E6059 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB45E68C23E06EE4005E6059 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +41,9 @@
 		AB45E69B23E06EE8005E6059 /* Meu primeiro appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Meu primeiro appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB45E69F23E06EE8005E6059 /* Meu_primeiro_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meu_primeiro_appTests.swift; sourceTree = "<group>"; };
 		AB45E6A123E06EE8005E6059 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB575C7623E45BF5004E1775 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		AB98C4CE23EAF2260090DB0D /* BarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarTableViewCell.swift; sourceTree = "<group>"; };
+		AB98C4D023EB03700090DB0D /* BarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 		AB45E67E23E06EE4005E6059 = {
 			isa = PBXGroup;
 			children = (
+				AB0935A423E8638200480E40 /* Bar.swift */,
 				AB45E68923E06EE4005E6059 /* Meu primeiro app */,
 				AB45E69E23E06EE8005E6059 /* Meu primeiro appTests */,
 				AB45E68823E06EE4005E6059 /* Products */,
@@ -80,6 +89,9 @@
 				AB45E68A23E06EE4005E6059 /* AppDelegate.swift */,
 				AB45E68C23E06EE4005E6059 /* ViewController.swift */,
 				AB45E68E23E06EE4005E6059 /* Main.storyboard */,
+				AB98C4D023EB03700090DB0D /* BarTableViewController.swift */,
+				AB98C4CE23EAF2260090DB0D /* BarTableViewCell.swift */,
+				AB575C7623E45BF5004E1775 /* RatingControl.swift */,
 				AB45E69123E06EE7005E6059 /* Assets.xcassets */,
 				AB45E69323E06EE7005E6059 /* LaunchScreen.storyboard */,
 				AB45E69623E06EE7005E6059 /* Info.plist */,
@@ -197,7 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB98C4CF23EAF2260090DB0D /* BarTableViewCell.swift in Sources */,
 				AB45E68D23E06EE4005E6059 /* ViewController.swift in Sources */,
+				AB98C4D123EB03700090DB0D /* BarTableViewController.swift in Sources */,
+				AB0935A523E8638200480E40 /* Bar.swift in Sources */,
+				AB575C7723E45BF5004E1775 /* RatingControl.swift in Sources */,
 				AB45E68B23E06EE4005E6059 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

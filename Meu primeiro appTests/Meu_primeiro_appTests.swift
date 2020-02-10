@@ -10,6 +10,35 @@ import XCTest
 @testable import Meu_primeiro_app
 
 class Meu_primeiro_appTests: XCTestCase {
+    //MARK: Meal Class Tests
+    // Zero rating
+    
+    func testMealInitializationSucceeds() {
+        let zeroRatingMeal = Bar.init(name: "Zero", photo: nil, rating: 0, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1)
+        XCTAssertNotNil(zeroRatingMeal)
+        
+        // Highest positive rating
+        let positiveRatingMeal = Bar.init(name: "Positive", photo: nil, rating: 4, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 999999)
+        XCTAssertNotNil(positiveRatingMeal)
+    }
+    
+    
+    
+    func testMealInitializationFails() {
+        // Negative rating
+        let negativeRatingMeal = Bar.init(name: "Negative", photo:
+            nil, rating: -1, cidade:"Negando", estado: "252345234", bairro: "Negando", rua: "Negando", numero: -1)
+        XCTAssertNil(negativeRatingMeal)
+        
+        // Rating exceeds maximum
+        let largeRatingMeal = Bar.init(name: "Large", photo: nil, rating:
+            6, cidade:"oasd", estado: "Negando", bairro: "Negando", rua: "Negando", numero: 0)
+        XCTAssertNil(largeRatingMeal)
+        
+        // Empty String
+        let emptyStringMeal = Bar.init(name: "", photo: nil, rating: 0, cidade:"", estado: "", bairro: "", rua: "", numero: 0)
+        XCTAssertNil(emptyStringMeal)
+    }
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
