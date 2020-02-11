@@ -40,37 +40,38 @@ import UIKit
         }
         ratingButtons.removeAll()
         
-        // Load Button Images
+        // Carrega as imagens das estrelas
         let bundle = Bundle(for: type(of: self))
         let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
         let emptyStar = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
         let highlightedStar = UIImage(named:"highlightedStar", in: bundle, compatibleWith: self.traitCollection)
         
         for index in 0..<starCount {
-            // Create the button
+            // Criando o botão
             let button = UIButton()
             
-            // Set the button images
+            // Setando as imagens e inserindo ação delas
             button.setImage(emptyStar, for: .normal)
             button.setImage(filledStar, for: .selected)
             button.setImage(highlightedStar, for: .highlighted)
             button.setImage(highlightedStar, for: [.highlighted, .selected, .focused])
             
-            // Add constraints
+            // Restrições das estrelas
+            // translatesAutoresizingMaskIntoConstraints - possibilita alterar tamanhos da estrela em modo estatico
             button.translatesAutoresizingMaskIntoConstraints = false
             button.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
             button.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
             
-            // Set the accessibility label
+            // define a acessibilidade dos botões
             button.accessibilityLabel = "Set \(index + 1) star rating"
             
-            // Setup the button action
+            // Configurando ação do botão
             button.addTarget(self, action: #selector(RatingControl.ratingButtonTapped(button:)), for: .touchUpInside)
             
-            // Add the button to the stack
+            // adicionando no conjunto de estrelas
             addArrangedSubview(button)
             
-            // Add the new button to the rating button array
+            // Adicione o novo botão à matriz de botões de classificação
             ratingButtons.append(button)
         }
         
@@ -132,10 +133,6 @@ import UIKit
             button.accessibilityHint = hintString
             button.accessibilityValue = valueString
         }
-    }
-    
-    private func abcd(){
-        
     }
  
     /*

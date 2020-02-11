@@ -52,7 +52,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         bairroTextField.delegate = self
         cidadeTextFild.delegate = self
         
-        // Set up views if editing an existing Meal.
+        // Configure vistas se estiver editando uma refeição existente.
         if let bar = bar {
             navigationItem.title = bar.name
             txtNome.text   = bar.name

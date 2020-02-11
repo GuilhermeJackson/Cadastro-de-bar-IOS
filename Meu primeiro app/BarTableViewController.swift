@@ -81,7 +81,7 @@ class BarTableViewController: UITableViewController {
             bars += savedMeals
         }
         else {
-            // Load the sample data.
+            // Carrega o metodo loadSampleMeals
             loadSampleMeals()
         }
     }
@@ -96,14 +96,14 @@ class BarTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // Table view cells are reused and should be dequeued using a cell identifier.
+        // As células da exibição de tabela são reutilizadas e devem ser desenfileiradas usando o cellIdentifier.
         let cellIdentifier = "BarTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BarTableViewCell  else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         
-        // Fetches the appropriate meal for the data source layout.
+        // Busca a refeição apropriada para o layout da fonte de dados.
         let bar = bars[indexPath.row]
         
         cell.nameLabel.text = bar.name
@@ -113,15 +113,15 @@ class BarTableViewController: UITableViewController {
         return cell
     }
     
-    // Override to support editing the table view.
+    // Substitui a funcao para oferecer suporte à edição da exibição da tabela.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            // deleta a linha com os respectivos dados
             bars.remove(at: indexPath.row)
             saveMeals()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            // Instacia a classe e inseri a mesma na matriz
         }
     }
     
@@ -148,7 +148,7 @@ class BarTableViewController: UITableViewController {
             guard let indexPath = tableView.indexPath(for: selectedMealCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            
+            //selecina os respectivo bar clicado
             let selectedMeal = bars[indexPath.row]
             mealDetailViewController.bar = selectedMeal
             

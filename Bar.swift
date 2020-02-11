@@ -10,7 +10,10 @@ import os.log
 
 class Bar: NSObject, NSCoding {
     //MARK: NSCoding
+    
+    //prepara as informações da classe a serem arquivadas
     func encode(with aCoder: NSCoder) {
+        //Armazenando informações em suas respectivas chaves
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(rating, forKey: PropertyKey.rating)
@@ -108,6 +111,7 @@ class Bar: NSObject, NSCoding {
         self.numero = numero
     }
     
+    //subclassificando o NSObject . NSObject é uma base usada para definir uma interface
     struct PropertyKey {
         static let name = "name"
         static let photo = "photo"
