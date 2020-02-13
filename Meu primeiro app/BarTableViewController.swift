@@ -142,7 +142,7 @@ class BarTableViewController: UITableViewController {
             }
             
             guard let selectedMealCell = sender as? BarTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(sender!)")
             }
             
             guard let indexPath = tableView.indexPath(for: selectedMealCell) else {
@@ -153,7 +153,7 @@ class BarTableViewController: UITableViewController {
             mealDetailViewController.bar = selectedMeal
             
         default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(segue.identifier!)")
         }
     }
 }

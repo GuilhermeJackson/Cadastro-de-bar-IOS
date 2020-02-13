@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//usado para desenhar no interfaceBuilder
 @IBDesignable class RatingControl: UIStackView {
 //MARK: Initialization
     
@@ -16,9 +16,9 @@ import UIKit
             setupButtons()
         }
     }
-    
+    // @IBInspectable - permite alterar o tamanho na aba de inspeção
     @IBInspectable var starCount: Int = 5 {
-        didSet {
+        didSet {    //sempre q o starCount for alterada, é usado o setupButtons()
             setupButtons()
         }
     }
@@ -33,7 +33,7 @@ import UIKit
     
     private func setupButtons() {
         
-        // Clear any existing buttons   /   clicar duas vezes na mesma estrela, a barra de estrelas fica em branco
+        // Limpando os botões existente
         for button in ratingButtons {
             removeArrangedSubview(button)
             button.removeFromSuperview()
@@ -51,9 +51,9 @@ import UIKit
             let button = UIButton()
             
             // Setando as imagens e inserindo ação delas
-            button.setImage(emptyStar, for: .normal)
-            button.setImage(filledStar, for: .selected)
-            button.setImage(highlightedStar, for: .highlighted)
+            button.setImage(emptyStar, for: .normal)    //estrela vazia
+            button.setImage(filledStar, for: .selected) //estrela azual
+            button.setImage(highlightedStar, for: .highlighted) //estrela preta
             button.setImage(highlightedStar, for: [.highlighted, .selected, .focused])
             
             // Restrições das estrelas
@@ -77,12 +77,12 @@ import UIKit
         
         updateButtonSelectionStates()
     }
-    
+    // Cria o setup de botões
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButtons()
     }
-    
+    // Usado para abrir algo que já esta salvo
     required init(coder: NSCoder) {
         super.init(coder: coder)
         setupButtons()
@@ -93,24 +93,24 @@ import UIKit
             fatalError("The button, \(button), is not in the ratingButtons array: \(ratingButtons)")
         }
         
-        // Calculate the rating of the selected button
+        // Calculando o rating para a seleção do mesmo
         let selectedRating = index + 1
         
         if selectedRating == rating {
-            // If the selected star represents the current rating, reset the rating to 0.
+            // Ao selecionar a mesma estrela duas vezes, o rating é zerado
             rating = 0
         } else {
-            // Otherwise set the rating to the selected star
+            // Caso contrario define o rating com a estrela selecionada
             rating = selectedRating
         }
     }
     
     private func updateButtonSelectionStates() {
         for (index, button) in ratingButtons.enumerated() {
-            // If the index of a button is less than the rating, that button should be selected.
+            // Se o índice de um botão for menor que a classificação, esse botão deverá ser selecionado.
             button.isSelected = index < rating
             
-            // Set the hint string for the currently selected star
+            // Define a hintString conforme a seleção das estrelas
             let hintString: String?
             if rating == index + 1 {
                 hintString = "Tap to reset the rating to zero."
@@ -118,7 +118,7 @@ import UIKit
                 hintString = nil
             }
             
-            // Calculate the value string
+            // Calcula o valor das strings
             let valueString: String
             switch (rating) {
             case 0:
@@ -129,7 +129,7 @@ import UIKit
                 valueString = "\(rating) stars set."
             }
             
-            // Assign the hint string and value string
+            // Atribui a sequencia de valores para a hintString
             button.accessibilityHint = hintString
             button.accessibilityValue = valueString
         }

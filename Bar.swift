@@ -24,6 +24,7 @@ class Bar: NSObject, NSCoding {
         aCoder.encode(numero, forKey: PropertyKey.numero)
     }
     
+    // Criando os objetos com o arquivo criado na "func encode"
     required convenience init?(coder aDecoder: NSCoder) {
         // The name is required. If we cannot decode a name string, the initializer should fail.
         guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
@@ -74,8 +75,6 @@ class Bar: NSObject, NSCoding {
     //MARK: Archiving Paths
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("bars")
-    
-
     
     
     //MARK: Initialization

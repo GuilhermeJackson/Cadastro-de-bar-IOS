@@ -75,7 +75,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     let imagePiker = UIImagePickerController()
     @IBAction func selectImage(_ sender: Any) {
-        
         print("Entrou na func selectImage")
         imagePiker.delegate = self
         imagePiker.sourceType = .photoLibrary
@@ -83,6 +82,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
             print("Verificou a permissao")
             imagePiker.allowsEditing = false
             imagePiker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+            // present - instancia uma view controle que mostra uma view (pertence ao UINavigationControllerDelegate(responsavel por controlar o q aparece ou não aparece))
             self.present(imagePiker, animated: true,completion: nil)
         }
         
@@ -96,11 +96,15 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         present(controller, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    //Mark: UIImagePickerController
+    //Inicializando o UIImagePickerController
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {    //Any - retorna qualquer tipo
+        
         if let imagee = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             image.image = imagee
         }
         else{
+            fatalError("ERROR");
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -142,10 +146,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         updateSaveButtonState()
-        
         return true;
     }
     
+    // quando acaba de editar (enter), label da barra superior recebe a informação do textField
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
         navigationItem.title = textField.text
