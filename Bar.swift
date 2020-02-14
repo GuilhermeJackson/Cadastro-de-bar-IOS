@@ -58,7 +58,7 @@ class Bar: NSObject, NSCoding {
         // Must call designated initializer.
         self.init(name: name, photo: photo, rating: rating, cidade: cidade, estado: estado, bairro: bairro, rua: rua, numero: numero)
     }
-    
+
     //MARK: Properties
 
     var name: String = ""
@@ -84,7 +84,7 @@ class Bar: NSObject, NSCoding {
             return nil
         }
         
-        // The rating must be between 0 and 5 inclusively
+        // A classificação deve estar entre 0 e 5
         guard (rating >= 0 && rating <= 5) else {
             return nil
         }
@@ -100,6 +100,11 @@ class Bar: NSObject, NSCoding {
                 return nil
             }
         }
+  
+        guard (estado.count == 2) else {
+            return nil
+        }
+        
         self.name = name
         self.photo = photo
         self.rating = rating

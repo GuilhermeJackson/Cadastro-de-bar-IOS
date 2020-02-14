@@ -88,6 +88,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         
     }
     
+    // Permitindo apenas dois caracteres no campo estado
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == estadoTextField{
+            guard let text = textField.text else { return true }
+            let newLength = text.count + string.count - range.length
+            return newLength <= 2
+        }
+        return true
+    }
+    
     //Não ta funcionando
     @IBAction func tirarandoFoto(_ sender: Any) {
         let controller = UIImagePickerController()

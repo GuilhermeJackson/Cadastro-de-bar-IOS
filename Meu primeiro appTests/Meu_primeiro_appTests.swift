@@ -18,7 +18,7 @@ class Meu_primeiro_appTests: XCTestCase {
         XCTAssertNotNil(zeroRatingMeal)
         
         // Highest positive rating
-        let positiveRatingMeal = Bar.init(name: "Positive", photo: nil, rating: 4, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 999999)
+        let positiveRatingMeal = Bar.init(name: "Positive", photo: nil, rating: 4, cidade:"Qualquer", estado: "sc", bairro: "Qualquer", rua: "Qualquer", numero: 999999)
         XCTAssertNotNil(positiveRatingMeal)
     }
     
@@ -27,7 +27,7 @@ class Meu_primeiro_appTests: XCTestCase {
     func testMealInitializationFails() {
         // Negative rating
         let negativeRatingMeal = Bar.init(name: "Negative", photo:
-            nil, rating: -1, cidade:"Negando", estado: "252345234", bairro: "Negando", rua: "Negando", numero: -1)
+            nil, rating: -1, cidade:"Negando", estado: "12", bairro: "Negando", rua: "Negando", numero: -1)
         XCTAssertNil(negativeRatingMeal)
         
         // Rating exceeds maximum
@@ -38,6 +38,10 @@ class Meu_primeiro_appTests: XCTestCase {
         // Empty String
         let emptyStringMeal = Bar.init(name: "", photo: nil, rating: 0, cidade:"", estado: "", bairro: "", rua: "", numero: 0)
         XCTAssertNil(emptyStringMeal)
+        
+        // Maximo de 2 caracteres no estado
+        let testMaxLenghtEstado = Bar.init(name: "", photo: nil, rating: 0, cidade:"", estado: "SCC", bairro: "", rua: "", numero: 0)
+        XCTAssertNil(testMaxLenghtEstado)
     }
 
     override func setUp() {
