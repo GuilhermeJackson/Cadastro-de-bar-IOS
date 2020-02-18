@@ -19,6 +19,7 @@
 		AB98C4D123EB03700090DB0D /* BarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98C4D023EB03700090DB0D /* BarTableViewController.swift */; };
 		AB98C4D723FAC9020090DB0D /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98C4D623FAC9010090DB0D /* MapsViewController.swift */; };
 		AB98C4D923FAD4EC0090DB0D /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98C4D823FAD4EC0090DB0D /* Artwork.swift */; };
+		AB98C4DB23FC063F0090DB0D /* ArtworkViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98C4DA23FC063F0090DB0D /* ArtworkViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		AB98C4D023EB03700090DB0D /* BarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarTableViewController.swift; sourceTree = "<group>"; };
 		AB98C4D623FAC9010090DB0D /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		AB98C4D823FAD4EC0090DB0D /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		AB98C4DA23FC063F0090DB0D /* ArtworkViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				AB45E68C23E06EE4005E6059 /* ViewController.swift */,
 				AB45E68E23E06EE4005E6059 /* Main.storyboard */,
 				AB98C4D823FAD4EC0090DB0D /* Artwork.swift */,
+				AB98C4DA23FC063F0090DB0D /* ArtworkViews.swift */,
 				AB98C4D023EB03700090DB0D /* BarTableViewController.swift */,
 				AB98C4CE23EAF2260090DB0D /* BarTableViewCell.swift */,
 				AB98C4D623FAC9010090DB0D /* MapsViewController.swift */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB98C4CF23EAF2260090DB0D /* BarTableViewCell.swift in Sources */,
+				AB98C4DB23FC063F0090DB0D /* ArtworkViews.swift in Sources */,
 				AB45E68D23E06EE4005E6059 /* ViewController.swift in Sources */,
 				AB98C4D923FAD4EC0090DB0D /* Artwork.swift in Sources */,
 				AB98C4D723FAC9020090DB0D /* MapsViewController.swift in Sources */,

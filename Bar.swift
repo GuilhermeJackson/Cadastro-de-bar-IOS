@@ -7,8 +7,10 @@
 //
 import UIKit
 import os.log
+import MapKit
 
-class Bar: NSObject, NSCoding {
+class Bar: NSObject, NSCoding, MKAnnotation {
+    
     //MARK: NSCoding
     
     //prepara as informações da classe a serem arquivadas
@@ -55,8 +57,10 @@ class Bar: NSObject, NSCoding {
         }
         let numero = aDecoder.decodeInteger(forKey: PropertyKey.numero)
         
+        let coordinate = aDecoder.decodeObject(forKey: PropertyKey.coordinate) as! CLLocationCoordinate2D
+        
         // Must call designated initializer.
-        self.init(name: name, photo: photo, rating: rating, cidade: cidade, estado: estado, bairro: bairro, rua: rua, numero: numero)
+        self.init(name: name, photo: photo, rating: rating, cidade: cidade, estado: estado, bairro: bairro, rua: rua, numero: numero, coordinate: coordinate)
     }
 
     //MARK: Properties
@@ -70,6 +74,7 @@ class Bar: NSObject, NSCoding {
     var rua: String = ""
     var numero: Int = 0
     var complemento: String?
+    var coordinate: CLLocationCoordinate2D
     
     
     //MARK: Archiving Paths
@@ -78,7 +83,7 @@ class Bar: NSObject, NSCoding {
     
     
     //MARK: Initialization
-    init?(name: String, photo: UIImage?, rating: Int, cidade: String, estado: String, bairro: String, rua: String, numero: Int) {
+    init?(name: String, photo: UIImage?, rating: Int, cidade: String, estado: String, bairro: String, rua: String, numero: Int, coordinate: CLLocationCoordinate2D) {
         // The name must not be empty
         guard !name.isEmpty else {
             return nil
@@ -113,6 +118,8 @@ class Bar: NSObject, NSCoding {
         self.estado = estado
         self.rua = rua
         self.numero = numero
+        self.coordinate = coordinate
+
     }
     
     //subclassificando o NSObject . NSObject é uma base usada para definir uma interface
@@ -125,6 +132,7 @@ class Bar: NSObject, NSCoding {
         static let bairro = "bairro"
         static let rua = "rua"
         static let numero = "numero"
+        static let coordinate = "coordinate"
     }
     
     

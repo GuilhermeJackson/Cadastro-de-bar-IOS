@@ -26,8 +26,8 @@
 	<string>batendoFoto</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>pickturePhoto</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>Permissão para acessar sua localização!</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Permissão para acessar sua localização, babaca!</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
