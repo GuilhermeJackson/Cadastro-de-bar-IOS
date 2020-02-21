@@ -16,6 +16,7 @@ class Bar: NSObject, NSCoding, MKAnnotation {
     //prepara as informações da classe a serem arquivadas
     func encode(with aCoder: NSCoder) {
         //Armazenando informações em suas respectivas chaves
+        aCoder.encode(title, forKey: PropertyKey.title)
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(rating, forKey: PropertyKey.rating)
@@ -24,11 +25,18 @@ class Bar: NSObject, NSCoding, MKAnnotation {
         aCoder.encode(bairro, forKey: PropertyKey.bairro)
         aCoder.encode(rua, forKey: PropertyKey.rua)
         aCoder.encode(numero, forKey: PropertyKey.numero)
+        aCoder.encode(coordinate.latitude, forKey: PropertyKey.latitude)
+        aCoder.encode(coordinate.latitude, forKey: PropertyKey.longitude)
     }
     
     // Criando os objetos com o arquivo criado na "func encode"
     required convenience init?(coder aDecoder: NSCoder) {
         // The name is required. If we cannot decode a name string, the initializer should fail.
+        guard let title = aDecoder.decodeObject(forKey: PropertyKey.title) as? String else {
+            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        
         guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
             os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
             return nil
@@ -57,14 +65,17 @@ class Bar: NSObject, NSCoding, MKAnnotation {
         }
         let numero = aDecoder.decodeInteger(forKey: PropertyKey.numero)
         
-        let coordinate = aDecoder.decodeObject(forKey: PropertyKey.coordinate) as! CLLocationCoordinate2D
+        let coordinate = CLLocationCoordinate2D(
+            latitude: aDecoder.decodeDouble(forKey: PropertyKey.latitude) ,
+            longitude: aDecoder.decodeDouble(forKey: PropertyKey.longitude) )
         
         // Must call designated initializer.
-        self.init(name: name, photo: photo, rating: rating, cidade: cidade, estado: estado, bairro: bairro, rua: rua, numero: numero, coordinate: coordinate)
+        self.init(title: title, name: name, photo: photo, rating: rating, cidade: cidade, estado: estado, bairro: bairro, rua: rua, numero: numero, coordinate: coordinate)
     }
 
     //MARK: Properties
 
+    var title: String?
     var name: String = ""
     var photo: UIImage?
     var rating: Int = 0
@@ -77,13 +88,14 @@ class Bar: NSObject, NSCoding, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     
     
+    
     //MARK: Archiving Paths
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("bars")
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("bares")
     
     
     //MARK: Initialization
-    init?(name: String, photo: UIImage?, rating: Int, cidade: String, estado: String, bairro: String, rua: String, numero: Int, coordinate: CLLocationCoordinate2D) {
+    init?(title: String, name: String, photo: UIImage?, rating: Int, cidade: String, estado: String, bairro: String, rua: String, numero: Int, coordinate: CLLocationCoordinate2D) {
         // The name must not be empty
         guard !name.isEmpty else {
             return nil
@@ -109,7 +121,7 @@ class Bar: NSObject, NSCoding, MKAnnotation {
         guard (estado.count == 2) else {
             return nil
         }
-        
+        self.title = title
         self.name = name
         self.photo = photo
         self.rating = rating
@@ -122,8 +134,13 @@ class Bar: NSObject, NSCoding, MKAnnotation {
 
     }
     
+    var nome: String? {
+        return cidade
+    }
+    
     //subclassificando o NSObject . NSObject é uma base usada para definir uma interface
     struct PropertyKey {
+        static let title = "title"
         static let name = "name"
         static let photo = "photo"
         static let rating = "rating"
@@ -132,8 +149,8 @@ class Bar: NSObject, NSCoding, MKAnnotation {
         static let bairro = "bairro"
         static let rua = "rua"
         static let numero = "numero"
-        static let coordinate = "coordinate"
-    }
-    
-    
+        static let latitude = "latitude"
+        static let longitude = "longitude"
+        
+    }    
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import MapKit
 
 private let reuseIdentifier = "Cell"
 
@@ -16,6 +17,11 @@ class BarTableViewController: UITableViewController {
     //MARK: Properties
     var bars = [Bar]()
     
+    @IBAction func volarBtn(_ sender: Any) {
+        print("ok")
+        dismiss(animated: true, completion: nil)
+        
+    }
     //MARK: Actions
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? ViewController, let bar = sourceViewController.bar {
@@ -46,33 +52,36 @@ class BarTableViewController: UITableViewController {
         }
     }
     
-    private func loadMeals() -> [Bar]? {
+    func loadMeals() -> [Bar]? {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Bar.ArchiveURL.path) as? [Bar]
-
     }
-    
     
     private func loadSampleMeals() {
         let photo1 = UIImage(named: "mochilas")
         let photo2 = UIImage(named: "cupimBar")
         let photo3 = UIImage(named: "retroBar")
         
-        guard let bar1 = Bar(name: "Moitilas Bar", photo: photo1, rating: 4, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1)  else {
+        let latLong = CLLocationCoordinate2D(latitude:-26.879263,longitude:-49.0787757)
+        
+        guard let bar1 = Bar(title: "titulo 1",name: "Moitilas Bar", photo: photo1, rating: 4, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1, coordinate: latLong)  else {
             fatalError("Unable to instantiate meal1")
         }
         
-        guard let bar2 = Bar(name: "Cupim Bar", photo: photo2, rating: 1, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1) else {
+        guard let bar2 = Bar(title: "titulo 2",name: "Cupim Bar", photo: photo2, rating: 1, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1, coordinate: latLong) else {
             fatalError("Unable to instantiate meal2")
         }
         
-        guard let bar3 = Bar(name: "Retro Bar", photo: photo3, rating: 3, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1) else {
+        guard let bar3 = Bar(title: "titulo 3", name: "Retro Bar", photo: photo3, rating: 3, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1, coordinate: latLong) else {
             fatalError("Unable to instantiate meal2")
         }
         bars += [bar1, bar2, bar3]
     }
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         //Adiciona um botao no lado esquerdo do item
         navigationItem.leftBarButtonItem = editButtonItem

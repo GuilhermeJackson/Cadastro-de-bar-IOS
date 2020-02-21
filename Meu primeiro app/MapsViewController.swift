@@ -13,6 +13,8 @@ class MapsViewController: UIViewController {
     
     @IBOutlet weak var viewMap: MKMapView!
     
+    var bares = [Bar]()
+    
     // faz o map dar zoom
     let regionRadius: CLLocationDistance = 2000
     func centerMapOnLocation(location: CLLocation) {
@@ -57,70 +59,60 @@ class MapsViewController: UIViewController {
         
         viewMap.showsUserLocation = true
         
-        
-    
         // set initial location in Honolulu
         let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
          viewMap.delegate = self
         //chamando o func para zoom do map
         centerMapOnLocation(location: locationManager.location ?? initialLocation)
-        // exibie a class Atwork no mapa
-        let artwork = Artwork(title: "King David Kalakaua",
-                             locationName: "Waikiki Gateway Park",
-                             discipline: "Sculpture",
-                              coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
-        viewMap.addAnnotation(artwork)
+
+      loadBares()
         
+    }
+    func loadBares() {
         
-        // Do any additional setup after loading the view.
+        if let savedMeals = NSKeyedUnarchiver.unarchiveObject(withFile: Bar.ArchiveURL.path) as? [Bar] {
+            bares += savedMeals
+        }
+        else {
+            // Carrega o metodo loadSampleMeals
+            loadSampleMeals()
+        }
+        
+        for bar in bares {
+            viewMap.addAnnotation(bar)
+        }
     }
     
-    
-    
-    // array dos objetos a ser achado no map
-    //var artworks: [Artwork] = []
-    
-    /*func loadInitialData() {
-        // 1    -   lê o arquivo PublicArt.json em um objeto Data.
-        guard let fileName = Bundle.main.path(forResource: "PublicArt", ofType: "json")
-            else { return }
-        let optionalData = try? Data(contentsOf: URL(fileURLWithPath: fileName))
+    private func loadSampleMeals() {
+        let photo1 = UIImage(named: "mochilas")
+        let photo2 = UIImage(named: "cupimBar")
+        let photo3 = UIImage(named: "retroBar")
         
-        guard
-            let data = optionalData,
-            // 2 - usa JSONSerialization para obter um objeto JSON.
-            let json = try? JSONSerialization.jsonObject(with: data),
-            // 3 - erifica se o objeto JSON é um dicionário com chaves String de qualquer valor.
-            let dictionary = json as? [String: Any],
-            // 4 - pega  apenas no objeto JSON cuja chave é "dados".
-            let works = dictionary["data"] as? [[Any]]
-            else { return }
-        // 5 - adicionar à classe Artwork e anexa o validWorks resultante à matriz de obras de arte.
-        let validWorks = works.flatMap { Artwork(json: $0) }
-        artworks.append(contentsOf: validWorks)
-    }*/
-    
-    
+        let latLong = CLLocationCoordinate2D(latitude:-26.879263,longitude:-49.0787757)
+         let proway = CLLocationCoordinate2D(latitude:-26.9206069,longitude:-49.0766607)
+         let shop = CLLocationCoordinate2D(latitude:-26.879263,longitude:-49.0787757)
+        
+        guard let bar1 = Bar(title: "titulo 1",name: "Moitilas Bar", photo: photo1, rating: 4, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1, coordinate: latLong)  else {
+            fatalError("Unable to instantiate meal1")
+        }
+        
+        guard let bar2 = Bar(title: "titulo 2",name: "Cupim Bar", photo: photo2, rating: 1, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1, coordinate: latLong) else {
+            fatalError("Unable to instantiate meal2")
+        }
+        
+        guard let bar3 = Bar(title: "titulo 3", name: "Retro Bar", photo: photo3, rating: 3, cidade:"Qualquer", estado: "qw", bairro: "Qualquer", rua: "Qualquer", numero: 1, coordinate: latLong) else {
+            fatalError("Unable to instantiate meal2")
+        }
+        bares += [bar1, bar2, bar3]
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
+}
 
 //faz retornar viewMap para todas as anotações do map
 extension MapsViewController: MKMapViewDelegate {
     // 1
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // 2
-        guard let annotation = annotation as? Artwork else { return nil }
+        guard let annotation = annotation as? Bar else { return nil }
         // 3
         let identifier = "marker"
         var view: MKMarkerAnnotationView

@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import MapKit
 
 
 class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -128,6 +129,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
         }
+        let title = nomeBarTextField.text ?? ""
         let namev = nomeBarTextField.text ?? ""
         let photo = image.image
         let rating = rationControl.rating
@@ -136,9 +138,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         let bairrovv = bairroTextField.text ?? ""
         let ruav = ruaTextField.text ?? ""
         let numerov = Int(numeroTextField.text ?? "0")
+        let coordinate = CLLocationCoordinate2D(latitude:0.0,longitude:0.0)
     
         // Defina a refeição a ser passada para MealTableViewController após o desenrolar.
-        bar = Bar(name: namev, photo: photo, rating: rating, cidade: cidadev, estado: estadovv, bairro: bairrovv, rua: ruav, numero: numerov!)
+        bar = Bar(title: title, name: namev, photo: photo, rating: rating, cidade: cidadev, estado: estadovv, bairro: bairrovv, rua: ruav, numero: numerov!, coordinate: coordinate)
     }
     
     private func updateSaveButtonState() {
