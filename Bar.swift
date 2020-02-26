@@ -8,6 +8,7 @@
 import UIKit
 import os.log
 import MapKit
+import CoreLocation
 
 class Bar: NSObject, NSCoding, MKAnnotation {
     
