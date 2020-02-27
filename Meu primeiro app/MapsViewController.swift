@@ -81,13 +81,13 @@ class MapsViewController: UIViewController {
         
         for bar in bares {
             let geo = CLGeocoder()
-            var addres = (bar.estado + " " + bar.cidade + " " + bar.bairro + " " + bar.rua)
+            var addres = (bar.estado + " " + bar.cidade + " " + bar.bairro + " " + bar.rua + " " + String(bar.numero))
             geo.geocodeAddressString(addres, completionHandler: {
                 (placemarks, error) -> Void in
                 
-                print(error)
+                print(error as Any)
                 
-                print ("hello")
+                print ("hello " + bar.name)
                 if let placemark = placemarks?[0]
                 {
                     self.viewMap.addAnnotation(MKPlacemark(placemark: placemark))
